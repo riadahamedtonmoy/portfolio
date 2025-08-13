@@ -257,36 +257,63 @@
       </p>
     </section>
     
-    <section>
-      <h2 data-en="Resume" data-jp="履歴書">Resume</h2>
-      <p data-en="You can preview my resume below or download it using the link."
-         data-jp="下記で履歴書をプレビューできます。リンクからダウンロードも可能です。">
-         You can preview my resume below or download it using the link.
-      </p>
-      <iframe src="resume.pdf" title="Resume Preview"></iframe>
-      <a class="download-btn" href="resume.pdf" download data-en="📄 Download PDF" data-jp="📄 PDFをダウンロード">📄 Download PDF</a>
-    </section>
-  </main>
+   <section>
+  <h2 data-en="Resume" data-jp="履歴書">Resume</h2>
+  <p data-en="You can preview my resume below or download it using the link."
+     data-jp="下記で履歴書をプレビューできます。リンクからダウンロードも可能です。">
+     You can preview my resume below or download it using the link.
+  </p>
 
-  <footer>
-    &copy; 2025 MD Riad Ahamed Tonmoy | <span data-en="Designed by トンモイ" data-jp="トンモイを込めて制作">Designed by トンモイ</span>
-  </footer>
+  <!-- Hidden resume preview -->
+  <iframe id="resumeFrame" src="resume.pdf" title="Resume Preview" style="display:none; width:100%; height:500px; border:1px solid #ccc;"></iframe>
 
-  <script>
-    let currentLang = 'en';
-    function toggleLanguage() {
-      currentLang = currentLang === 'en' ? 'jp' : 'en';
-      document.querySelectorAll('[data-en]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${currentLang}`);
-      });
-      document.querySelector('.control-buttons button:first-child').textContent = currentLang === 'en' ? '日本語' : 'English';
-    }
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-    }
+  <!-- Button that reveals/hides resume -->
+  <button id="toggleResumeBtn"
+          data-en="📄 Show Resume Preview"
+          data-jp="📄 履歴書プレビューを表示">
+    📄 Show Resume Preview
+  </button>
+
+  <!-- Download link -->
+  <a class="download-btn" href="resume.pdf" download data-en="📄 Download PDF" data-jp="📄 PDFをダウンロード">
+    📄 Download PDF
+  </a>
+</section>
+</main>
+
+<footer>
+  &copy; 2025 MD Riad Ahamed Tonmoy | 
+  <span data-en="Designed by トンモイ" data-jp="トンモイを込めて制作">Designed by トンモイ</span>
+</footer>
+
+<script>
+  let currentLang = 'en';
+
+  function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'jp' : 'en';
     document.querySelectorAll('[data-en]').forEach(el => {
-      el.textContent = el.getAttribute('data-en');
+      el.textContent = el.getAttribute(`data-${currentLang}`);
     });
-  </script>
-</body>
-</html>
+    document.querySelector('.control-buttons button:first-child').textContent =
+      currentLang === 'en' ? '日本語' : 'English';
+  }
+
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+  }
+
+  // Initialize text in English
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.textContent = el.getAttribute('data-en');
+  });
+
+  // Toggle resume preview
+  document.getElementById("toggleResumeBtn").addEventListener("click", function() {
+    const frame = document.getElementById("resumeFrame");
+    const showing = frame.style.display === "block";
+    frame.style.display = showing ? "none" : "block";
+    this.textContent = showing
+      ? (currentLang === 'en' ? "📄 Show Resume Preview" : "📄 履歴書プレビューを表示")
+      : (currentLang === 'en' ? "📄 Hide Resume Preview" : "📄 履歴書プレビューを隠す");
+  });
+</script>
