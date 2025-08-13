@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD Riad Ahamed Tonmoy - Portfolio</title>
+  <style>
+    :root {
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --card-bg: white;
+      --accent: #0d47a1;
+    }
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #f1f1f1;
+      --card-bg: #1e1e1e;
+      --accent: #64b5f6;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    header {
+      background: var(--accent);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      transition: background 0.4s ease;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+    section {
+      margin-bottom: 2rem;
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: background 0.4s ease, transform 0.3s ease;
+    }
+    section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    h2 {
+      color: var(--accent);
+      margin-top: 0;
+      transition: color 0.4s ease;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .skills span {
+      display: inline-block;
+      background: #e3f2fd;
+      color: var(--accent);
+      padding: 0.3rem 0.6rem;
+      margin: 0.2rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+    body.dark .skills span {
+      background: #263238;
+      color: #bbdefb;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--accent);
+      color: white;
+      font-size: 0.85rem;
+      transition: background 0.4s ease;
+    }
+    .control-buttons {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+      z-index: 100;
+    }
+    .control-buttons button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+    .control-buttons button:hover {
+      background: #1565c0;
+    }
+    body.dark .control-buttons button:hover {
+      background: #90caf9;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="control-buttons">
+    <button onclick="toggleLanguage()">日本語</button>
+    <button onclick="toggleDarkMode()">🌙</button>
+  </div>
+
+  <header>
+    <h1 data-en="MD Riad Ahamed Tonmoy" data-jp="MD リアド アハメド トンモイ">MD Riad Ahamed Tonmoy</h1>
+    <p data-en="IT & CAD Design Specialist | Programmer | Multilingual"
+       data-jp="IT・CAD設計スペシャリスト | プログラマー | 多言語対応">
+       IT & CAD Design Specialist | Programmer | Multilingual
+    </p>
+    <p>📧 mdriadahamedtonmoy@gmail.com | 📱 070-9221-4116</p>
+  </header>
+
+  <main>
+    <section>
+      <h2 data-en="About Me" data-jp="自己紹介">About Me</h2>
+      <p data-en="I am currently studying at a CAD design technical school (CADIT) while mastering both IT and design skills. My expertise includes AutoCAD, 2D/3D modeling, programming with Java, Python, and web technologies. I am passionate about integrating IT with manufacturing design to contribute to digital transformation (DX) in the industry."
+         data-jp="現在、CAD製図専門学校（CADIT）で学びながら、IT技術と設計技術の両方を習得しています。AutoCAD、2D/3Dモデリング、JavaやPython、Web技術などに精通し、ITと製造設計を融合させて産業のDX推進に貢献することに情熱を持っています。">
+         I am currently studying at a CAD design technical school...
+      </p>
+    </section>
+
+    <section>
+      <h2 data-en="Education" data-jp="学歴">Education</h2>
+      <ul>
+        <li data-en="CADIT CAD Design Technical School – Expected Graduation: March 2026"
+            data-jp="CAD製図専門学校 CADIT科 – 卒業見込み：2026年3月"></li>
+        <li data-en="Tomifuji Language School – Graduated: March 2024"
+            data-jp="富藤外国語学院 – 卒業：2024年3月"></li>
+        <li data-en="Uttara University (B.Sc. in Computer Science & Engineering) – Graduated: August 2022"
+            data-jp="ウッタラ大学（コンピュータサイエンス＆エンジニアリング学士） – 卒業：2022年8月"></li>
+        <li data-en="LightHouse Career High School – Graduated: August 2016"
+            data-jp="LightHouse Career高等学校 – 卒業：2016年8月"></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 data-en="Experience" data-jp="職歴">Experience</h2>
+      <ul>
+        <li data-en="Seven-Eleven Koshigaya East Exit Store – Cashier & Stocking (Aug 2024 – Present)"
+            data-jp="セブン-イレブン越谷駅東口店 – レジ・品出し（2024年8月～現在）"></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 data-en="Skills" data-jp="スキル">Skills</h2>
+      <div class="skills">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>Python</span>
+        <span>Java</span>
+        <span>C</span>
+        <span>C++</span>
+        <span>MySQL</span>
+        <span>AutoCAD</span>
+        <span>2D/3D Modeling</span>
+        <span data-en="Teamwork" data-jp="チームワーク">Teamwork</span>
+        <span data-en="Communication" data-jp="コミュニケーション能力">Communication</span>
+        <span data-en="Fast Learning" data-jp="学習の早さ">Fast Learning</span>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Languages" data-jp="対応言語">Languages</h2>
+      <ul>
+        <li data-en="English – Conversational" data-jp="英語 – 日常会話レベル"></li>
+        <li data-en="Japanese – Conversational" data-jp="日本語 – 日常会話レベル"></li>
+        <li data-en="Bengali – Native" data-jp="ベンガル語 – 母国語"></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 data-en="Certifications" data-jp="資格">Certifications</h2>
+      <ul>
+        <li data-en="JLPT N3 (Dec 2023)" data-jp="日本語能力試験 N3（2023年12月）"></li>
+        <li data-en="JLPT N5 (Jul 2022)" data-jp="日本語能力試験 N5（2022年7月）"></li>
+        <li data-en="TOEIC 645 (May 2025)" data-jp="TOEIC 645（2025年5月）"></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 data-en="Hobbies & Interests" data-jp="趣味・関心">Hobbies & Interests</h2>
+      <ul>
+        <li data-en="Watching Japanese anime and movies" data-jp="日本のアニメや映画を見ること"></li>
+        <li data-en="Exploring new technologies and gadgets" data-jp="新しい技術やガジェットに触れること"></li>
+        <li data-en="Learning Japanese language and culture" data-jp="日本語と日本文化の勉強"></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 MD Riad Ahamed Tonmoy | <span data-en="Designed with ❤️" data-jp="❤️を込めて制作">Designed with ❤️</span>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'jp' : 'en';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${currentLang}`);
+      });
+      document.querySelector('.control-buttons button:first-child').textContent = currentLang === 'en' ? '日本語' : 'English';
+    }
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = el.getAttribute('data-en');
+    });
+  </script>
+</body>
+</html>
