@@ -17,160 +17,109 @@
       --card-bg: #1e1e1e;
       --accent: #64b5f6;
     }
-<body>
-  <div class="control-buttons">
-    <button onclick="toggleLanguage()">日本語</button>
-    <button id="darkModeBtn" onclick="toggleDarkMode()">🌙</button>
-  </div>
-
-  <header>
-    <img src="profile.jpg" alt="Profile Photo" class="profile-pic" />
-    <div class="header-text">
-      <h1 data-en="MD Riad Ahamed Tonmoy" data-jp="イムデイ リアド アハメド トンモイ">MD Riad Ahamed Tonmoy</h1>
-      <p id="typingText"></p> <!-- typing animation target -->
-      <p>📧 mdriadahamedtonmoy@gmail.com | 📱 070-9221-4116</p>
-    </div>
-  </header>
-
-  <main>
-    <!-- Example Section -->
-    <section>
-      <h2 data-en="About Me" data-jp="自己紹介">About Me</h2>
-      <p>I am currently studying at CADIT...</p>
-    </section>
-
-    <!-- Documents Section -->
-    <section>
-      <h2>Documents</h2>
-
-      <!-- Resume -->
-      <h3 data-en="Resume" data-jp="履歴書">Resume</h3>
-      <iframe id="resumeFrame" src="resume.pdf" style="display:none;"></iframe>
-      <button id="toggleResumeBtn">📄 Show Resume Preview</button>
-      <a class="download-btn" href="resume.pdf" download id="resumeDownload">📄 Download Resume PDF</a>
-      <p id="resumeCounter">📄 Downloaded 0 times</p>
-      <p id="resumeUpdated"></p>
-
-      <hr>
-
-      <!-- Portfolio -->
-      <h3 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h3>
-      <iframe id="portfolioFrame" src="portfolio.pdf" style="display:none;"></iframe>
-      <button id="togglePortfolioBtn">📂 Show Portfolio Preview</button>
-      <a class="download-btn" href="portfolio.pdf" download id="portfolioDownload">📂 Download Portfolio PDF</a>
-      <p id="portfolioCounter">📂 Downloaded 0 times</p>
-      <p id="portfolioUpdated"></p>
-    </section>
-
-    <!-- Project Gallery -->
-    <section>
-      <h2>Project Gallery</h2>
-      <div class="gallery">
-        <img src="project1.jpg" alt="Project 1" onclick="openModal(this.src)">
-        <img src="project2.jpg" alt="Project 2" onclick="openModal(this.src)">
-        <img src="project3.jpg" alt="Project 3" onclick="openModal(this.src)">
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 MD Riad Ahamed Tonmoy |
-    <span>Designed by トンモイ</span>
-  </footer>
-
-  <!-- Floating Contact Button -->
-  <a href="mailto:mdriadahamedtonmoy@gmail.com" class="contact-btn">📩 Contact Me</a>
-
-  <!-- Fullscreen Modal for Gallery -->
-  <div id="modal" class="modal" onclick="closeModal()">
-    <img id="modalImg">
-  </div>
-
-  <button id="backToTop" title="Go to top">⬆️</button>
-
-  <script>
-    // ===== Typing Animation =====
-    const typingText = document.getElementById("typingText");
-    const roles = ["IT & CAD Design Specialist", "Programmer", "Multilingual"];
-    let roleIndex = 0, charIndex = 0;
-    function typeEffect() {
-      if (charIndex < roles[roleIndex].length) {
-        typingText.textContent += roles[roleIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(typeEffect, 100);
-      } else {
-        setTimeout(() => {
-          typingText.textContent = "";
-          charIndex = 0;
-          roleIndex = (roleIndex + 1) % roles.length;
-          typeEffect();
-        }, 2000);
-      }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
-    typeEffect();
-
-    // ===== Download Counter =====
-    function setupDownloadCounter(btnId, counterId, key) {
-      let count = localStorage.getItem(key) || 0;
-      document.getElementById(counterId).textContent = `Downloaded ${count} times`;
-      document.getElementById(btnId).addEventListener("click", () => {
-        count++;
-        localStorage.setItem(key, count);
-        document.getElementById(counterId).textContent = `Downloaded ${count} times`;
-      });
+    header {
+      background: var(--accent);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    setupDownloadCounter("resumeDownload", "resumeCounter", "resumeDownloads");
-    setupDownloadCounter("portfolioDownload", "portfolioCounter", "portfolioDownloads");
-
-    // ===== Last Updated Badge =====
-    async function showLastUpdated(file, elementId) {
-      try {
-        let res = await fetch(file, { method: "HEAD" });
-        let date = res.headers.get("last-modified");
-        if (date) {
-          let d = new Date(date);
-          document.getElementById(elementId).textContent = `Updated: ${d.toDateString()}`;
-        }
-      } catch {}
+    @media (min-width: 600px) {
+      header { flex-direction: row; justify-content: center; text-align: left; }
     }
-    showLastUpdated("resume.pdf", "resumeUpdated");
-    showLastUpdated("portfolio.pdf", "portfolioUpdated");
-
-    // ===== Gallery Modal =====
-    function openModal(src) {
-      document.getElementById("modal").style.display = "flex";
-      document.getElementById("modalImg").src = src;
+    .profile-pic {
+      width: 120px; height: 120px; border-radius: 50%;
+      object-fit: cover; border: 3px solid white; margin-bottom: 1rem;
     }
-    function closeModal() {
-      document.getElementById("modal").style.display = "none";
+    @media (min-width: 600px) {
+      .profile-pic { margin-right: 2rem; margin-bottom: 0; }
     }
+    .header-text { max-width: 500px; }
+    .header-text h1 { margin: 0; font-size: 2rem; }
+    .header-text p { margin: 0.5rem 0; }
 
-    // ===== Dark Mode & Back to Top =====
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-      const btn = document.getElementById("darkModeBtn");
-      btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+    main { max-width: 900px; margin: auto; padding: 2rem 1rem; }
+    section {
+      margin-bottom: 2rem; background: var(--card-bg);
+      padding: 1.5rem; border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    const backToTopBtn = document.getElementById("backToTop");
-    window.onscroll = () => {
-      backToTopBtn.style.display = (document.documentElement.scrollTop > 300) ? "block" : "none";
-    };
-    backToTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
+    h2 { color: var(--accent); margin-top: 0; }
+    ul { padding-left: 1.2rem; }
 
-  <style>
-    /* Floating Contact Button */
-    .contact-btn {
-      position: fixed;
-      bottom: 20px; right: 20px;
+    .skills span {
+      display: inline-block;
+      background: #e3f2fd; color: var(--accent);
+      padding: 0.3rem 0.6rem; margin: 0.2rem;
+      border-radius: 4px; font-size: 0.9rem;
+    }
+    body.dark .skills span { background: #263238; color: #bbdefb; }
+
+    footer {
+      text-align: center; padding: 1rem;
       background: var(--accent); color: white;
-      padding: 0.8rem 1.2rem; border-radius: 50px;
-      text-decoration: none; font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      font-size: 0.85rem;
     }
-    .contact-btn:hover { background: #1565c0; }
+
+    .control-buttons {
+      position: fixed; top: 10px; right: 10px;
+      display: flex; gap: 8px; z-index: 100;
+    }
+    .control-buttons button {
+      background: var(--accent); color: white;
+      border: none; padding: 0.5rem 1rem;
+      cursor: pointer; border-radius: 4px; font-size: 0.9rem;
+    }
+    .control-buttons button:hover { background: #1565c0; }
+    body.dark .control-buttons button:hover { background: #90caf9; color: black; }
+
+    iframe {
+      width: 100%; height: 600px;
+      border: none; border-radius: 6px; margin-top: 1rem;
+    }
+    .download-btn {
+      display: inline-block; margin-top: 1rem;
+      padding: 0.6rem 1rem; background: var(--accent);
+      color: white; text-decoration: none; border-radius: 4px;
+    }
+    .download-btn:hover { background: #1565c0; }
+
+    @media (max-width: 480px) {
+      header { flex-direction: column; text-align: center; padding: 1.5rem 1rem; }
+      .profile-pic { width: 100px; height: 100px; margin-bottom: 1rem; }
+      .header-text h1 { font-size: 1.4rem; }
+      .header-text p { font-size: 0.9rem; }
+      section { padding: 1rem; }
+      h2 { font-size: 1.2rem; }
+      iframe { height: 400px; }
+    }
+
+    button, .download-btn {
+      min-width: 140px; min-height: 44px;
+      font-size: 1rem; padding: 0.6rem 1rem; border-radius: 6px;
+    }
+    p, li { line-height: 1.8; }
+
+    #backToTop {
+      display: none; position: fixed; bottom: 20px; right: 20px;
+      z-index: 200; font-size: 1.2rem;
+      padding: 0.6rem 0.9rem; border: none; border-radius: 50%;
+      background: var(--accent); color: white;
+      cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+    #backToTop:hover { background: #1565c0; }
+    body.dark #backToTop { background: #64b5f6; color: black; }
 
     /* Gallery */
     .gallery { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -181,18 +130,29 @@
     }
     .gallery img:hover { transform: scale(1.05); }
 
-    /* Modal */
     .modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.8); justify-content: center; align-items: center;
-      z-index: 1000;
+      z-index: 2000;
     }
     .modal img {
       max-width: 90%; max-height: 90%; border-radius: 10px;
     }
-  </style>
-</body>
 
+    /* Floating contact button */
+    .contact-btn {
+      position: fixed;
+      bottom: 80px; right: 20px;
+      background: var(--accent); color: white;
+      padding: 0.8rem 1.2rem; border-radius: 50px;
+      text-decoration: none; font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    .contact-btn:hover { background: #1565c0; }
+  </style>
+</head>
+<body>
   <div class="control-buttons">
     <button onclick="toggleLanguage()">日本語</button>
     <button id="darkModeBtn" onclick="toggleDarkMode()">🌙</button>
@@ -202,32 +162,98 @@
     <img src="profile.jpg" alt="Profile Photo" class="profile-pic" />
     <div class="header-text">
       <h1 data-en="MD Riad Ahamed Tonmoy" data-jp="イムデイ リアド アハメド トンモイ">MD Riad Ahamed Tonmoy</h1>
-      <p data-en="IT & CAD Design Specialist | Programmer | Multilingual"
-         data-jp="IT・CAD設計スペシャリスト | プログラマー | 多言語対応">
-         IT & CAD Design Specialist | Programmer | Multilingual
-      </p>
+      <p id="typingText"></p>
       <p>📧 mdriadahamedtonmoy@gmail.com | 📱 070-9221-4116</p>
     </div>
   </header>
 
   <main>
-    <section>
-      <h2 data-en="About Me" data-jp="自己紹介">About Me</h2>
-      <p>I am currently studying at CADIT...</p>
-    </section>
+<section>
+  <h2 data-en="About Me" data-jp="自己紹介">About Me</h2>
+  <p>
+    I am currently studying at a CAD design technical school (CADIT) while mastering both IT and design skills. 
+    I am a fresher student, well-versed in numerous programming languages including HTML, PHP OOP, JavaScript, CSS, and MySQL. 
+    My expertise also includes AutoCAD, 2D/3D modeling, and programming with Java, Python, and web technologies. 
+    I am a programmer with a strong passion for learning new technologies and a dedication to delivering high-quality code. 
+    I aim to integrate IT with manufacturing design to contribute to digital transformation (DX) in the industry.
+  </p>
+</section>
 
+<section>
+  <h2 data-en="Education" data-jp="学歴">Education</h2>
+  <ul>
+    <li>CADIT CAD Design Technical School – Expected Graduation: March 2026</li>
+    <li>Tomifuji Language School – Graduated: March 2024</li>
+    <li>Uttara University (B.Sc. in Computer Science & Engineering) – Graduated: August 2022</li>
+    <li>LightHouse Career High School – Graduated: August 2016</li>
+  </ul>
+</section>
+
+<section>
+  <h2 data-en="Work Experience" data-jp="職務経験">Work Experience</h2>
+  <ul>
+    <li>🧑‍🎓 Full-time experience: None yet (new graduate)</li>
+    <li>🕒 Part-time: 7-Eleven (Japan) – Worked in a Japanese-speaking environment, assisting customers and handling daily operations</li>
+    <li>💻 Technical: 1–2 years of personal and academic IT & CAD projects</li>
+    <li>🎯 Currently job hunting as a new graduate while studying at CAD Technical College (graduation expected March 2026)</li>
+  </ul>
+</section>
+
+<section>
+  <h2 data-en="Skills" data-jp="スキル">Skills</h2>
+  <div class="skills">
+    <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span>
+    <span>Java</span><span>C</span><span>C++</span><span>MySQL</span>
+    <span>AutoCAD</span><span>2D/3D Modeling</span>
+    <span>Teamwork</span><span>Communication</span><span>Fast Learning</span>
+  </div>
+</section>
+
+<section>
+  <h2 data-en="Languages" data-jp="対応言語">Languages</h2>
+  <ul>
+    <li>English – Conversational</li>
+    <li>Japanese – Conversational</li>
+    <li>Bengali – Native</li>
+  </ul>
+</section>
+
+<section>
+  <h2 data-en="Certifications" data-jp="資格">Certifications</h2>
+  <ul>
+    <li>JLPT N3 (Dec 2023)</li>
+    <li>JLPT N5 (Jul 2022)</li>
+    <li>TOEIC 645 (May 2025)</li>
+  </ul>
+</section>
+
+<section>
+  <h2 data-en="Hobbies & Interests" data-jp="趣味・関心">Hobbies & Interests</h2>
+  <ul>
+    <li>Watching Japanese anime and movies</li>
+    <li>Exploring new technologies and gadgets</li>
+    <li>Learning Japanese language and culture</li>
+  </ul>
+</section>
+
+<section>
+  <h2 data-en="Contact & Links" data-jp="連絡先とリンク">Contact & Links</h2>
+  <p>📍 Address: Saitama, Japan</p>
+  <p>
+    🔗 <a href="https://www.linkedin.com/in/riad-ahamed-tonmoy-a38918325" target="_blank">LinkedIn</a><br />
+    🌐 <a href="https://riadahamedtonmoy.github.io/portfolio/" target="_blank">Portfolio Website</a>
+</p>
+</section>
     <section>
       <h2>Documents</h2>
       <!-- Resume -->
       <h3 data-en="Resume" data-jp="履歴書">Resume</h3>
       <iframe id="resumeFrame" src="resume.pdf" title="Resume Preview"
               style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
-      <button id="toggleResumeBtn"
-              data-en="📄 Show Resume Preview"
-              data-jp="📄 履歴書プレビューを表示">
-        📄 Show Resume Preview
-      </button>
-      <a class="download-btn" href="resume.pdf" download>📄 Download Resume PDF</a>
+      <button id="toggleResumeBtn">📄 Show Resume Preview</button>
+      <a class="download-btn" id="resumeDownload" href="resume.pdf" download>📄 Download Resume PDF</a>
+      <p id="resumeCounter">📄 Downloaded 0 times</p>
+      <p id="resumeUpdated"></p>
 
       <hr style="margin:2rem 0;">
 
@@ -235,12 +261,18 @@
       <h3 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h3>
       <iframe id="portfolioFrame" src="portfolio.pdf" title="Portfolio Preview"
               style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
-      <button id="togglePortfolioBtn"
-              data-en="📂 Show Portfolio Preview"
-              data-jp="📂 ポートフォリオプレビューを表示">
-        📂 Show Portfolio Preview
-      </button>
-      <a class="download-btn" href="portfolio.pdf" download>📂 Download Portfolio PDF</a>
+      <button id="togglePortfolioBtn">📂 Show Portfolio Preview</button>
+      <a class="download-btn" id="portfolioDownload" href="portfolio.pdf" download>📂 Download Portfolio PDF</a>
+      <p id="portfolioCounter">📂 Downloaded 0 times</p>
+      <p id="portfolioUpdated"></p>
+    </section>
+
+    <section>
+      <h2>Project Gallery</h2>
+      <p><em>📌 I don’t have projects uploaded yet, but I plan to add CAD designs, coding demos, and other works here in the future.</em></p>
+      <div class="gallery">
+        <!-- Empty for now -->
+      </div>
     </section>
   </main>
 
@@ -250,6 +282,12 @@
   </footer>
 
   <button id="backToTop" title="Go to top">⬆️</button>
+  <a href="mailto:mdriadahamedtonmoy@gmail.com" class="contact-btn">📩 Contact Me</a>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" onclick="closeModal()">
+    <img id="modalImg">
+  </div>
 
   <script>
     let currentLang = 'en';
@@ -269,38 +307,67 @@
       btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
     }
 
-function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
-  const btn = document.getElementById(btnId);
-  const frame = document.getElementById(frameId);
-
-  btn.addEventListener("click", function () {
-    const showing = frame.style.display === "block";
-
-    if (showing) {
-      frame.style.display = "none";
-      this.textContent = (currentLang === 'en' ? enShow : jpShow);
-    } else {
-      frame.style.display = "block";
-      this.textContent = (currentLang === 'en' ? enHide : jpHide);
+    // Typing Animation
+    const typingText = document.getElementById("typingText");
+    const roles = ["IT & CAD Design Specialist", "Programmer", "Multilingual"];
+    let roleIndex = 0, charIndex = 0;
+    function typeEffect() {
+      if (charIndex < roles[roleIndex].length) {
+        typingText.textContent += roles[roleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeEffect, 100);
+      } else {
+        setTimeout(() => {
+          typingText.textContent = "";
+          charIndex = 0;
+          roleIndex = (roleIndex + 1) % roles.length;
+          typeEffect();
+        }, 2000);
+      }
     }
-  });
-}
+    typeEffect();
 
-// Resume toggle
-setupToggle(
-  "toggleResumeBtn", "resumeFrame",
-  "📄 Show Resume Preview", "📄 Hide Resume Preview",
-  "📄 履歴書プレビューを表示", "📄 履歴書プレビューを隠す"
-);
+    // Download Counter
+    function setupDownloadCounter(btnId, counterId, key) {
+      let count = localStorage.getItem(key) || 0;
+      document.getElementById(counterId).textContent = `Downloaded ${count} times`;
+      document.getElementById(btnId).addEventListener("click", () => {
+        count++;
+        localStorage.setItem(key, count);
+        document.getElementById(counterId).textContent = `Downloaded ${count} times`;
+      });
+    }
+    setupDownloadCounter("resumeDownload", "resumeCounter", "resumeDownloads");
+    setupDownloadCounter("portfolioDownload", "portfolioCounter", "portfolioDownloads");
 
-// Portfolio toggle
-setupToggle(
-  "togglePortfolioBtn", "portfolioFrame",
-  "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview",
-  "📂 ポートフォリオプレビューを表示", "📂 ポートフォリオプレビューを隠す"
-);
+    // Last Updated Badge
+    async function showLastUpdated(file, elementId) {
+      try {
+        let res = await fetch(file, { method: "HEAD" });
+        let date = res.headers.get("last-modified");
+        if (date) {
+          let d = new Date(date);
+          document.getElementById(elementId).textContent = `Updated: ${d.toDateString()}`;
+        }
+      } catch {}
+    }
+    showLastUpdated("resume.pdf", "resumeUpdated");
+    showLastUpdated("portfolio.pdf", "portfolioUpdated");
 
-    // Back to Top Button
+    // Preview toggle
+    function setupToggle(btnId, frameId, enShow, enHide) {
+      const btn = document.getElementById(btnId);
+      const frame = document.getElementById(frameId);
+      btn.addEventListener("click", function () {
+        const showing = frame.style.display === "block";
+        frame.style.display = showing ? "none" : "block";
+        this.textContent = showing ? enShow : enHide;
+      });
+    }
+    setupToggle("toggleResumeBtn", "resumeFrame", "📄 Show Resume Preview", "📄 Hide Resume Preview");
+    setupToggle("togglePortfolioBtn", "portfolioFrame", "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview");
+
+    // Back to Top
     const backToTopBtn = document.getElementById("backToTop");
     window.onscroll = function () {
       backToTopBtn.style.display =
@@ -309,6 +376,15 @@ setupToggle(
     backToTopBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+
+    // Gallery Modal
+    function openModal(src) {
+      document.getElementById("modal").style.display = "flex";
+      document.getElementById("modalImg").src = src;
+    }
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
   </script>
 </body>
 </html>
