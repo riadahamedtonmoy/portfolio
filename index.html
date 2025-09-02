@@ -258,52 +258,43 @@
     </section>
     
 <section>
-  <h2 data-en="Resume" data-jp="履歴書">Resume</h2>
-  <p data-en="You can preview my resume below or download it using the link."
-     data-jp="下記で履歴書をプレビューできます。リンクからダウンロードも可能です。"></p>
+  <h2 data-en="Documents" data-jp="書類">Documents</h2>
+  <p data-en="You can preview or download my resume and portfolio deliverables below."
+     data-jp="以下で履歴書とポートフォリオ資料をプレビューまたはダウンロードできます。"></p>
 
-  <!-- Hidden resume preview -->
+  <!-- Resume -->
+  <h3 data-en="Resume" data-jp="履歴書">Resume</h3>
   <iframe id="resumeFrame" src="resume.pdf" title="Resume Preview"
-          style="display:none; width:100%; height:500px; border:1px solid #ccc;"></iframe>
-
-  <!-- Button that reveals/hides resume -->
+          style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
   <button id="toggleResumeBtn"
           data-en="📄 Show Resume Preview"
           data-jp="📄 履歴書プレビューを表示">
     📄 Show Resume Preview
   </button>
-
-  <!-- Download link -->
   <a class="download-btn" href="resume.pdf" download
-     data-en="📄 Download PDF"
-     data-jp="📄 PDFをダウンロード">
-    📄 Download PDF
+     data-en="📄 Download Resume PDF"
+     data-jp="📄 履歴書PDFをダウンロード">
+    📄 Download Resume PDF
   </a>
-</section>
 
-<section>
-  <h2 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h2>
-  <p data-en="You can preview some of my project deliverables below or download them."
-     data-jp="以下で一部の成果物をプレビューするか、ダウンロードすることができます。"></p>
+  <hr style="margin:2rem 0; border:0; border-top:1px solid #ccc;">
 
-  <!-- Hidden preview -->
+  <!-- Portfolio -->
+  <h3 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h3>
   <iframe id="portfolioFrame" src="portfolio.pdf" title="Portfolio Preview"
-          style="display:none; width:100%; height:500px; border:1px solid #ccc;"></iframe>
-
-  <!-- Button to toggle preview -->
+          style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
   <button id="togglePortfolioBtn"
           data-en="📂 Show Portfolio Preview"
           data-jp="📂 ポートフォリオプレビューを表示">
     📂 Show Portfolio Preview
   </button>
-
-  <!-- Download link -->
   <a class="download-btn" href="portfolio.pdf" download
      data-en="📂 Download Portfolio PDF"
      data-jp="📂 ポートフォリオPDFをダウンロード">
     📂 Download Portfolio PDF
   </a>
 </section>
+
 
 <section>
   <h2 data-en="Additional Documents" data-jp="追加書類">Additional Documents</h2>
@@ -355,15 +346,6 @@ document.querySelectorAll('[data-en]').forEach(el => {
   el.textContent = el.getAttribute('data-en');
 });
 
-/**
- * Reusable toggle function
- * @param {string} btnId  - The ID of the button
- * @param {string} frameId - The ID of the iframe
- * @param {string} enShow - English text when hidden
- * @param {string} enHide - English text when shown
- * @param {string} jpShow - Japanese text when hidden
- * @param {string} jpHide - Japanese text when shown
- */
 function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
   const btn = document.getElementById(btnId);
   const frame = document.getElementById(frameId);
@@ -376,17 +358,17 @@ function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
   });
 }
 
-// Apply to Resume
+// Apply toggles
 setupToggle(
   "toggleResumeBtn", "resumeFrame",
   "📄 Show Resume Preview", "📄 Hide Resume Preview",
   "📄 履歴書プレビューを表示", "📄 履歴書プレビューを隠す"
 );
 
-// Apply to Portfolio
 setupToggle(
   "togglePortfolioBtn", "portfolioFrame",
   "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview",
   "📂 ポートフォリオプレビューを表示", "📂 ポートフォリオプレビューを隠す"
 );
+
 </script>
