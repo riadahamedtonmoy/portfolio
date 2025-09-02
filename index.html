@@ -147,8 +147,55 @@
     .download-btn:hover {
       background: #1565c0;
     }
+
+    /* ✅ Mobile First CSS upgrade */
+    @media (max-width: 480px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+      }
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1rem;
+      }
+      .header-text h1 {
+        font-size: 1.4rem;
+      }
+      .header-text p {
+        font-size: 0.9rem;
+      }
+      section {
+        padding: 1rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      ul {
+        padding-left: 1rem;
+      }
+      iframe {
+        height: 400px;
+      }
+    }
+
+    /* ✅ Thumb-friendly buttons */
+    button, .download-btn {
+      min-width: 140px;
+      min-height: 44px;
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+    }
+
+    /* ✅ Better readability */
+    p, li {
+      line-height: 1.8;
+    }
   </style>
 </head>
+
 <body>
   <div class="control-buttons">
     <button onclick="toggleLanguage()">日本語</button>
