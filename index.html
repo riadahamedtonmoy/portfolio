@@ -120,6 +120,24 @@
     }
     #backToTop:hover { background: #1565c0; }
     body.dark #backToTop { background: #64b5f6; color: black; }
+    /* Gallery */
+.gallery { display: flex; gap: 10px; flex-wrap: wrap; }
+.gallery img {
+  width: 150px; height: 100px; object-fit: cover;
+  border-radius: 6px; cursor: pointer;
+  transition: transform 0.3s;
+}
+.gallery img:hover { transform: scale(1.05); }
+
+.modal {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8); justify-content: center; align-items: center;
+  z-index: 2000;
+}
+.modal img {
+  max-width: 90%; max-height: 90%; border-radius: 10px;
+}
+
   </style>
 </head>
 <body>
@@ -127,6 +145,10 @@
     <button onclick="toggleLanguage()">日本語</button>
     <button id="darkModeBtn" onclick="toggleDarkMode()">🌙</button>
   </div>
+<!-- Modal for Gallery -->
+<div id="modal" class="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
 
   <header>
     <img src="profile.jpg" alt="Profile Photo" class="profile-pic" />
@@ -280,6 +302,15 @@
       <a class="download-btn" href="portfolio.pdf" download>📂 Download Portfolio PDF</a>
 
     </section>
+       <!-- Project Gallery Placeholder -->
+    <section>
+      <h2>Project Gallery</h2>
+      <p><em>📌 I don’t have projects uploaded yet, but I plan to add CAD designs, coding demos, and other works here in the future.</em></p>
+      <div class="gallery">
+        <!-- Example placeholder image -->
+        <!-- <img src="example.jpg" alt="Project" onclick="openModal(this.src)"> -->
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -306,7 +337,25 @@
       const btn = document.getElementById("darkModeBtn");
       btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
     }
-
+   // Typing Animation
+    const typingText = document.getElementById("typingText");
+    const roles = ["IT & CAD Design Specialist", "Programmer", "Multilingual"];
+    let roleIndex = 0, charIndex = 0;
+    function typeEffect() {
+      if (charIndex < roles[roleIndex].length) {
+        typingText.textContent += roles[roleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeEffect, 100);
+      } else {
+        setTimeout(() => {
+          typingText.textContent = "";
+          charIndex = 0;
+          roleIndex = (roleIndex + 1) % roles.length;
+          typeEffect();
+        }, 2000);
+      }
+    }
+    typeEffect();
   function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
   const btn = document.getElementById(btnId);
   const frame = document.getElementById(frameId);
@@ -336,6 +385,7 @@ function setupDownloadCounter(btnId, counterId, key) {
 setupDownloadCounter("resumeDownload", "resumeCounter", "resumeDownloads");
 setupDownloadCounter("portfolioDownload", "portfolioCounter", "portfolioDownloads");
 
+
 // ===== Last Updated Badge =====
 async function showLastUpdated(file, elementId) {
   try {
@@ -363,8 +413,6 @@ setupToggle(
   "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview",
   "📂 ポートフォリオプレビューを表示", "📂 ポートフォリオプレビューを隠す"
 );
-
-
     // Back to Top Button
     const backToTopBtn = document.getElementById("backToTop");
     window.onscroll = function () {
@@ -374,6 +422,15 @@ setupToggle(
     backToTopBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+
+    // Gallery Modal
+    function openModal(src) {
+      document.getElementById("modal").style.display = "flex";
+      document.getElementById("modalImg").src = src;
+    }
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
   </script>
 </body>
 </html>
