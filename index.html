@@ -120,36 +120,6 @@
     }
     #backToTop:hover { background: #1565c0; }
     body.dark #backToTop { background: #64b5f6; color: black; }
-
-    /* Gallery */
-    .gallery { display: flex; gap: 10px; flex-wrap: wrap; }
-    .gallery img {
-      width: 150px; height: 100px; object-fit: cover;
-      border-radius: 6px; cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .gallery img:hover { transform: scale(1.05); }
-
-    .modal {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8); justify-content: center; align-items: center;
-      z-index: 2000;
-    }
-    .modal img {
-      max-width: 90%; max-height: 90%; border-radius: 10px;
-    }
-
-    /* Floating contact button */
-    .contact-btn {
-      position: fixed;
-      bottom: 80px; right: 20px;
-      background: var(--accent); color: white;
-      padding: 0.8rem 1.2rem; border-radius: 50px;
-      text-decoration: none; font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
-    .contact-btn:hover { background: #1565c0; }
   </style>
 </head>
 <body>
@@ -162,7 +132,10 @@
     <img src="profile.jpg" alt="Profile Photo" class="profile-pic" />
     <div class="header-text">
       <h1 data-en="MD Riad Ahamed Tonmoy" data-jp="イムデイ リアド アハメド トンモイ">MD Riad Ahamed Tonmoy</h1>
-      <p id="typingText"></p>
+      <p data-en="IT & CAD Design Specialist | Programmer | Multilingual"
+         data-jp="IT・CAD設計スペシャリスト | プログラマー | 多言語対応">
+         IT & CAD Design Specialist | Programmer | Multilingual
+      </p>
       <p>📧 mdriadahamedtonmoy@gmail.com | 📱 070-9221-4116</p>
     </div>
   </header>
@@ -242,18 +215,21 @@
   <p>
     🔗 <a href="https://www.linkedin.com/in/riad-ahamed-tonmoy-a38918325" target="_blank">LinkedIn</a><br />
     🌐 <a href="https://riadahamedtonmoy.github.io/portfolio/" target="_blank">Portfolio Website</a>
-</p>
+  </p>
 </section>
+
     <section>
       <h2>Documents</h2>
       <!-- Resume -->
       <h3 data-en="Resume" data-jp="履歴書">Resume</h3>
       <iframe id="resumeFrame" src="resume.pdf" title="Resume Preview"
               style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
-      <button id="toggleResumeBtn">📄 Show Resume Preview</button>
-      <a class="download-btn" id="resumeDownload" href="resume.pdf" download>📄 Download Resume PDF</a>
-      <p id="resumeCounter">📄 Downloaded 0 times</p>
-      <p id="resumeUpdated"></p>
+      <button id="toggleResumeBtn"
+              data-en="📄 Show Resume Preview"
+              data-jp="📄 履歴書プレビューを表示">
+        📄 Show Resume Preview
+      </button>
+      <a class="download-btn" href="resume.pdf" download>📄 Download Resume PDF</a>
 
       <hr style="margin:2rem 0;">
 
@@ -261,18 +237,12 @@
       <h3 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h3>
       <iframe id="portfolioFrame" src="portfolio.pdf" title="Portfolio Preview"
               style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
-      <button id="togglePortfolioBtn">📂 Show Portfolio Preview</button>
-      <a class="download-btn" id="portfolioDownload" href="portfolio.pdf" download>📂 Download Portfolio PDF</a>
-      <p id="portfolioCounter">📂 Downloaded 0 times</p>
-      <p id="portfolioUpdated"></p>
-    </section>
-
-    <section>
-      <h2>Project Gallery</h2>
-      <p><em>📌 I don’t have projects uploaded yet, but I plan to add CAD designs, coding demos, and other works here in the future.</em></p>
-      <div class="gallery">
-        <!-- Empty for now -->
-      </div>
+      <button id="togglePortfolioBtn"
+              data-en="📂 Show Portfolio Preview"
+              data-jp="📂 ポートフォリオプレビューを表示">
+        📂 Show Portfolio Preview
+      </button>
+      <a class="download-btn" href="portfolio.pdf" download>📂 Download Portfolio PDF</a>
     </section>
   </main>
 
@@ -282,12 +252,6 @@
   </footer>
 
   <button id="backToTop" title="Go to top">⬆️</button>
-  <a href="mailto:mdriadahamedtonmoy@gmail.com" class="contact-btn">📩 Contact Me</a>
-
-  <!-- Modal -->
-  <div id="modal" class="modal" onclick="closeModal()">
-    <img id="modalImg">
-  </div>
 
   <script>
     let currentLang = 'en';
@@ -307,67 +271,39 @@
       btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
     }
 
-    // Typing Animation
-    const typingText = document.getElementById("typingText");
-    const roles = ["IT & CAD Design Specialist", "Programmer", "Multilingual"];
-    let roleIndex = 0, charIndex = 0;
-    function typeEffect() {
-      if (charIndex < roles[roleIndex].length) {
-        typingText.textContent += roles[roleIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(typeEffect, 100);
-      } else {
-        setTimeout(() => {
-          typingText.textContent = "";
-          charIndex = 0;
-          roleIndex = (roleIndex + 1) % roles.length;
-          typeEffect();
-        }, 2000);
-      }
-    }
-    typeEffect();
+  function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
+  const btn = document.getElementById(btnId);
+  const frame = document.getElementById(frameId);
 
-    // Download Counter
-    function setupDownloadCounter(btnId, counterId, key) {
-      let count = localStorage.getItem(key) || 0;
-      document.getElementById(counterId).textContent = `Downloaded ${count} times`;
-      document.getElementById(btnId).addEventListener("click", () => {
-        count++;
-        localStorage.setItem(key, count);
-        document.getElementById(counterId).textContent = `Downloaded ${count} times`;
-      });
-    }
-    setupDownloadCounter("resumeDownload", "resumeCounter", "resumeDownloads");
-    setupDownloadCounter("portfolioDownload", "portfolioCounter", "portfolioDownloads");
+  btn.addEventListener("click", function () {
+    const showing = frame.style.display === "block";
 
-    // Last Updated Badge
-    async function showLastUpdated(file, elementId) {
-      try {
-        let res = await fetch(file, { method: "HEAD" });
-        let date = res.headers.get("last-modified");
-        if (date) {
-          let d = new Date(date);
-          document.getElementById(elementId).textContent = `Updated: ${d.toDateString()}`;
-        }
-      } catch {}
+    if (showing) {
+      frame.style.display = "none";
+      this.textContent = (currentLang === 'en' ? enShow : jpShow);
+    } else {
+      frame.style.display = "block";
+      this.textContent = (currentLang === 'en' ? enHide : jpHide);
     }
-    showLastUpdated("resume.pdf", "resumeUpdated");
-    showLastUpdated("portfolio.pdf", "portfolioUpdated");
+  });
+}
 
-    // Preview toggle
-    function setupToggle(btnId, frameId, enShow, enHide) {
-      const btn = document.getElementById(btnId);
-      const frame = document.getElementById(frameId);
-      btn.addEventListener("click", function () {
-        const showing = frame.style.display === "block";
-        frame.style.display = showing ? "none" : "block";
-        this.textContent = showing ? enShow : enHide;
-      });
-    }
-    setupToggle("toggleResumeBtn", "resumeFrame", "📄 Show Resume Preview", "📄 Hide Resume Preview");
-    setupToggle("togglePortfolioBtn", "portfolioFrame", "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview");
+// Resume toggle
+setupToggle(
+  "toggleResumeBtn", "resumeFrame",
+  "📄 Show Resume Preview", "📄 Hide Resume Preview",
+  "📄 履歴書プレビューを表示", "📄 履歴書プレビューを隠す"
+);
 
-    // Back to Top
+// Portfolio toggle
+setupToggle(
+  "togglePortfolioBtn", "portfolioFrame",
+  "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview",
+  "📂 ポートフォリオプレビューを表示", "📂 ポートフォリオプレビューを隠す"
+);
+
+
+    // Back to Top Button
     const backToTopBtn = document.getElementById("backToTop");
     window.onscroll = function () {
       backToTopBtn.style.display =
@@ -376,15 +312,6 @@
     backToTopBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-
-    // Gallery Modal
-    function openModal(src) {
-      document.getElementById("modal").style.display = "flex";
-      document.getElementById("modalImg").src = src;
-    }
-    function closeModal() {
-      document.getElementById("modal").style.display = "none";
-    }
   </script>
 </body>
 </html>
