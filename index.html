@@ -198,13 +198,16 @@ function toggleLanguage() {
 }
 
 function toggleDarkMode() {
-  document.body.classList.toggle('dark');
+  document.body.classList.toggle("dark");
+
+  const btn = document.querySelector('.control-buttons button:last-child'); // your dark mode button
+  if (document.body.classList.contains("dark")) {
+    btn.textContent = "☀️"; // show sun when in dark mode (to switch back)
+  } else {
+    btn.textContent = "🌙"; // show moon when in light mode
+  }
 }
 
-// Initialize text in English
-document.querySelectorAll('[data-en]').forEach(el => {
-  el.textContent = el.getAttribute('data-en');
-});
 
 function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
   const btn = document.getElementById(btnId);
