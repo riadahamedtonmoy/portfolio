@@ -4,198 +4,200 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MD Riad Ahamed Tonmoy - Portfolio</title>
-  <style>
-    :root {
-      --bg-color: #f9f9f9;
-      --text-color: #333;
-      --card-bg: white;
-      --accent: #0d47a1;
-    }
-    body.dark {
-      --bg-color: #121212;
-      --text-color: #f1f1f1;
-      --card-bg: #1e1e1e;
-      --accent: #64b5f6;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      transition: background-color 0.4s ease, color 0.4s ease;
-    }
-    header {
-      background: var(--accent);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    @media (min-width: 600px) {
-      header {
-        flex-direction: row;
-        justify-content: center;
-        text-align: left;
-      }
-    }
-    .profile-pic {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid white;
-      margin-bottom: 1rem;
-    }
-    @media (min-width: 600px) {
-      .profile-pic {
-        margin-right: 2rem;
-        margin-bottom: 0;
-      }
-    }
-    .header-text {
-      max-width: 500px;
-    }
-    .header-text h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    .header-text p {
-      margin: 0.5rem 0;
-    }
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem 1rem;
-    }
-    section {
-      margin-bottom: 2rem;
-      background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: var(--accent);
-      margin-top: 0;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
-    .skills span {
-      display: inline-block;
-      background: #e3f2fd;
-      color: var(--accent);
-      padding: 0.3rem 0.6rem;
-      margin: 0.2rem;
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
-    body.dark .skills span {
-      background: #263238;
-      color: #bbdefb;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: var(--accent);
-      color: white;
-      font-size: 0.85rem;
-    }
-    .control-buttons {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      display: flex;
-      gap: 8px;
-      z-index: 100;
-    }
-    .control-buttons button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
-    .control-buttons button:hover {
-      background: #1565c0;
-    }
-    body.dark .control-buttons button:hover {
-      background: #90caf9;
-      color: black;
-    }
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 6px;
-      margin-top: 1rem;
-    }
-    .download-btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1rem;
-      background: var(--accent);
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-    }
-    .download-btn:hover {
-      background: #1565c0;
-    }
+ <style>
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #333;
+  --card-bg: white;
+  --accent: #0d47a1;
+}
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+  --card-bg: #1e1e1e;
+  --accent: #64b5f6;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+header {
+  background: var(--accent);
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 600px) {
+  header {
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+  }
+}
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  margin-bottom: 1rem;
+}
+@media (min-width: 600px) {
+  .profile-pic {
+    margin-right: 2rem;
+    margin-bottom: 0;
+  }
+}
+.header-text {
+  max-width: 500px;
+}
+.header-text h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+.header-text p {
+  margin: 0.5rem 0;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+section {
+  margin-bottom: 2rem;
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+h2 {
+  color: var(--accent);
+  margin-top: 0;
+}
+ul {
+  padding-left: 1.2rem;
+}
+.skills span {
+  display: inline-block;
+  background: #e3f2fd;
+  color: var(--accent);
+  padding: 0.3rem 0.6rem;
+  margin: 0.2rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+body.dark .skills span {
+  background: #263238;
+  color: #bbdefb;
+}
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--accent);
+  color: white;
+  font-size: 0.85rem;
+}
+/* ✅ Control buttons (always top-right) */
+.control-buttons {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+.control-buttons button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.control-buttons button:hover {
+  background: #1565c0;
+}
+body.dark .control-buttons button:hover {
+  background: #90caf9;
+  color: black;
+}
+iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+.download-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.download-btn:hover {
+  background: #1565c0;
+}
 
-    /* ✅ Mobile First CSS upgrade */
-    @media (max-width: 480px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem 1rem;
-      }
-      .profile-pic {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 1rem;
-      }
-      .header-text h1 {
-        font-size: 1.4rem;
-      }
-      .header-text p {
-        font-size: 0.9rem;
-      }
-      section {
-        padding: 1rem;
-      }
-      h2 {
-        font-size: 1.2rem;
-      }
-      ul {
-        padding-left: 1rem;
-      }
-      iframe {
-        height: 400px;
-      }
-    }
+/* ✅ Mobile First CSS upgrade */
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+  }
+  .header-text h1 {
+    font-size: 1.4rem;
+  }
+  .header-text p {
+    font-size: 0.9rem;
+  }
+  section {
+    padding: 1rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  ul {
+    padding-left: 1rem;
+  }
+  iframe {
+    height: 400px;
+  }
+}
 
-    /* ✅ Thumb-friendly buttons */
-    button, .download-btn {
-      min-width: 140px;
-      min-height: 44px;
-      font-size: 1rem;
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
-    }
+/* ✅ Thumb-friendly buttons */
+button, .download-btn {
+  min-width: 140px;
+  min-height: 44px;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+}
 
-    /* ✅ Better readability */
-    p, li {
-      line-height: 1.8;
-    }
-    /* Back to Top Button */
+/* ✅ Better readability */
+p, li {
+  line-height: 1.8;
+}
+
+/* ✅ Back to Top Button */
 #backToTop {
-  display: none; /* hidden by default */
+  display: none;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -217,21 +219,7 @@ body.dark #backToTop {
   background: #64b5f6;
   color: black;
 }
-/* ✅ Mobile layout for control buttons */
-@media (max-width: 480px) {
-  .control-buttons {
-    position: static; /* no longer fixed */
-    margin-top: 1rem;
-    justify-content: center;
-  }
-  .control-buttons button {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-  }
-}
-
-
-  </style>
+</style>
 </head>
 
 <body>
