@@ -313,41 +313,38 @@
     </section>
     
 <section>
-  <h2 data-en="Documents" data-jp="書類">Documents</h2>
-  <p data-en="You can preview or download my resume and portfolio deliverables below."
-     data-jp="以下で履歴書とポートフォリオ資料をプレビューまたはダウンロードできます。"></p>
+<!-- Resume -->
+<h3 data-en="Resume" data-jp="履歴書">Resume</h3>
+<iframe id="resumeFrame" src="resume.pdf" title="Resume Preview"
+        style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
+<button id="toggleResumeBtn"
+        data-en="📄 Show Resume Preview"
+        data-jp="📄 履歴書プレビューを表示">
+  📄 Show Resume Preview
+</button>
+<a class="download-btn" href="resume.pdf" download
+   data-en="📄 Download Resume PDF"
+   data-jp="📄 履歴書PDFをダウンロード">
+  📄 Download Resume PDF
+</a>
 
-  <!-- Resume -->
-  <h3 data-en="Resume" data-jp="履歴書">Resume</h3>
-  <iframe id="resumeFrame" src="resume.pdf" title="Resume Preview"
-          style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
-  <button id="toggleResumeBtn"
-          data-en="📄 Show Resume Preview"
-          data-jp="📄 履歴書プレビューを表示">
-    📄 Show Resume Preview
-  </button>
-  <a class="download-btn" href="resume.pdf" download
-     data-en="📄 Download Resume PDF"
-     data-jp="📄 履歴書PDFをダウンロード">
-    📄 Download Resume PDF
-  </a>
+<hr>
 
-  <hr style="margin:2rem 0; border:0; border-top:1px solid #ccc;">
+<!-- Portfolio -->
+<h3 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h3>
+<iframe id="portfolioFrame" src="portfolio.pdf" title="Portfolio Preview"
+        style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
+<button id="togglePortfolioBtn"
+        data-en="📂 Show Portfolio Preview"
+        data-jp="📂 ポートフォリオプレビューを表示">
+  📂 Show Portfolio Preview
+</button>
+<a class="download-btn" href="portfolio.pdf" download
+   data-en="📂 Download Portfolio PDF"
+   data-jp="📂 ポートフォリオPDFをダウンロード">
+  📂 Download Portfolio PDF
+</a>
 
-  <!-- Portfolio -->
-  <h3 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h3>
-  <iframe id="portfolioFrame" src="portfolio.pdf" title="Portfolio Preview"
-          style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
-  <button id="togglePortfolioBtn"
-          data-en="📂 Show Portfolio Preview"
-          data-jp="📂 ポートフォリオプレビューを表示">
-    📂 Show Portfolio Preview
-  </button>
-  <a class="download-btn" href="portfolio.pdf" download
-     data-en="📂 Download Portfolio PDF"
-     data-jp="📂 ポートフォリオPDFをダウンロード">
-    📂 Download Portfolio PDF
-  </a>
 </section>
 
 
@@ -403,11 +400,11 @@ function toggleDarkMode() {
   }
 }
 
-
 function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
   const btn = document.getElementById(btnId);
   const frame = document.getElementById(frameId);
-  btn.addEventListener("click", function() {
+
+  btn.addEventListener("click", function () {
     const showing = frame.style.display === "block";
     frame.style.display = showing ? "none" : "block";
     this.textContent = showing
@@ -416,18 +413,20 @@ function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
   });
 }
 
-// Apply toggles
+// ✅ Resume toggle
 setupToggle(
   "toggleResumeBtn", "resumeFrame",
   "📄 Show Resume Preview", "📄 Hide Resume Preview",
   "📄 履歴書プレビューを表示", "📄 履歴書プレビューを隠す"
 );
 
+// ✅ Portfolio toggle
 setupToggle(
   "togglePortfolioBtn", "portfolioFrame",
   "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview",
   "📂 ポートフォリオプレビューを表示", "📂 ポートフォリオプレビューを隠す"
 );
+
 // Back to Top Button
 const backToTopBtn = document.getElementById("backToTop");
 
