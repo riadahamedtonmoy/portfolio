@@ -199,36 +199,36 @@
       btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
     }
 
-    function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
-      const btn = document.getElementById(btnId);
-      const frame = document.getElementById(frameId);
+function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
+  const btn = document.getElementById(btnId);
+  const frame = document.getElementById(frameId);
 
-      btn.addEventListener("click", function () {
-        const showing = frame.style.display === "block";
+  btn.addEventListener("click", function () {
+    const showing = frame.style.display === "block";
 
-        if (showing) {
-          frame.style.display = "none";
-          this.textContent = (currentLang === 'en' ? enShow : jpShow);
-        } else {
-          frame.style.display = "block";
-          this.textContent = (currentLang === 'en' ? enHide : jpHide);
-        }
-      });
+    if (showing) {
+      frame.style.display = "none";
+      this.textContent = (currentLang === 'en' ? enShow : jpShow);
+    } else {
+      frame.style.display = "block";
+      this.textContent = (currentLang === 'en' ? enHide : jpHide);
     }
+  });
+}
 
-    // Resume toggle
-    setupToggle(
-      "toggleResumeBtn", "resumeFrame",
-      "📄 Show Resume Preview", "📄 Hide Resume Preview",
-      "📄 履歴書プレビューを表示", "📄 履歴書プレビューを隠す"
-    );
+// Resume toggle
+setupToggle(
+  "toggleResumeBtn", "resumeFrame",
+  "📄 Show Resume Preview", "📄 Hide Resume Preview",
+  "📄 履歴書プレビューを表示", "📄 履歴書プレビューを隠す"
+);
 
-    // Portfolio toggle
-    setupToggle(
-      "togglePortfolioBtn", "portfolioFrame",
-      "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview",
-      "📂 ポートフォリオプレビューを表示", "📂 ポートフォリオプレビューを隠す"
-    );
+// Portfolio toggle
+setupToggle(
+  "togglePortfolioBtn", "portfolioFrame",
+  "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview",
+  "📂 ポートフォリオプレビューを表示", "📂 ポートフォリオプレビューを隠す"
+);
 
     // Back to Top Button
     const backToTopBtn = document.getElementById("backToTop");
