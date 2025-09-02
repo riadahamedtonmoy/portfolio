@@ -11,6 +11,8 @@ body.dark {
   --card-bg: #1e1e1e;
   --accent: #64b5f6;
 }
+/* rest of your CSS */
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
