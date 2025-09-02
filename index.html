@@ -149,18 +149,44 @@
 <div id="modal" class="modal" onclick="closeModal()">
   <img id="modalImg">
 </div>
+<header>
+  <img src="profile.jpg" alt="Profile Photo" class="profile-pic" />
+  <div class="header-text">
+    <h1 data-en="Riad Ahamed Tonmoy" data-jp="リアド アハメド トンモイ">MD Riad Ahamed Tonmoy</h1>
+    
+    <!-- Static subtitle -->
+    <p data-en="IT & CAD Design Specialist | Programmer | Multilingual"
+       data-jp="IT・CAD設計スペシャリスト | プログラマー | 多言語対応">
+       IT & CAD Design Specialist | Programmer | Multilingual
+    </p>
+    
+    <!-- Typing effect below -->
+    <p><span id="typingText"></span></p>
+    
+    <p>📧 mdriadahamedtonmoy@gmail.com | 📱 070-9221-4116</p>
+  </div>
+</header>
 
-  <header>
-    <img src="profile.jpg" alt="Profile Photo" class="profile-pic" />
-    <div class="header-text">
-      <h1 data-en="Riad Ahamed Tonmoy" data-jp="リアド アハメド トンモイ">MD Riad Ahamed Tonmoy</h1>
-      <p data-en="IT & CAD Design Specialist | Programmer | Multilingual"
-         data-jp="IT・CAD設計スペシャリスト | プログラマー | 多言語対応">
-         IT & CAD Design Specialist | Programmer | Multilingual
-      </p>
-      <p>📧 mdriadahamedtonmoy@gmail.com | 📱 070-9221-4116</p>
-    </div>
-  </header>
+
+<section>
+  <h3 data-en="Resume" data-jp="履歴書">Resume</h3>
+  <iframe id="resumeFrame" src="resume.pdf" style="display:none;width:100%;height:500px;border:1px solid #ccc;margin-bottom:1rem;"></iframe>
+  <button id="toggleResumeBtn" data-en="📄 Show Resume Preview" data-jp="📄 履歴書プレビューを表示">📄 Show Resume Preview</button>
+  <a id="resumeDownload" class="download-btn" href="resume.pdf" download>📄 Download Resume PDF</a>
+  <p id="resumeCounter"></p>
+  <p id="resumeUpdated"></p>
+
+  <hr style="margin:2rem 0;">
+
+  <h3 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h3>
+  <iframe id="portfolioFrame" src="portfolio.pdf" style="display:none;width:100%;height:500px;border:1px solid #ccc;margin-bottom:1rem;"></iframe>
+  <button id="togglePortfolioBtn" data-en="📂 Show Portfolio Preview" data-jp="📂 ポートフォリオプレビューを表示">📂 Show Portfolio Preview</button>
+  <a id="portfolioDownload" class="download-btn" href="portfolio.pdf" download>📂 Download Portfolio PDF</a>
+  <p id="portfolioCounter"></p>
+  <p id="portfolioUpdated"></p>
+</section>
+
+
 
   <main>
 <section>
@@ -278,26 +304,23 @@
     <section>
       <h2>Documents</h2>
       <!-- Resume -->
-      <h3 data-en="Resume" data-jp="履歴書">Resume</h3>
-      <iframe id="resumeFrame" src="resume.pdf" title="Resume Preview"
-              style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
-      <button id="toggleResumeBtn"
-              data-en="📄 Show Resume Preview"
-              data-jp="📄 履歴書プレビューを表示">
-        📄 Show Resume Preview
-      </button>
-      <a class="download-btn" href="resume.pdf" download>📄 Download Resume PDF</a>
+     <section>
+  <h3 data-en="Resume" data-jp="履歴書">Resume</h3>
+  <iframe id="resumeFrame" src="resume.pdf" style="display:none;width:100%;height:500px;border:1px solid #ccc;margin-bottom:1rem;"></iframe>
+  <button id="toggleResumeBtn" data-en="📄 Show Resume Preview" data-jp="📄 履歴書プレビューを表示">📄 Show Resume Preview</button>
+  <a id="resumeDownload" class="download-btn" href="resume.pdf" download>📄 Download Resume PDF</a>
+  <p id="resumeCounter"></p>
+  <p id="resumeUpdated"></p>
 
-      <hr style="margin:2rem 0;">
+  <hr style="margin:2rem 0;">
 
-      <!-- Portfolio -->
-      <h3 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h3>
-      <iframe id="portfolioFrame" src="portfolio.pdf" title="Portfolio Preview"
-              style="display:none; width:100%; height:500px; border:1px solid #ccc; margin-bottom:1rem;"></iframe>
-      <button id="togglePortfolioBtn"
-              data-en="📂 Show Portfolio Preview"
-              data-jp="📂 ポートフォリオプレビューを表示">
-        📂 Show Portfolio Preview
+  <h3 data-en="Portfolio Deliverables" data-jp="ポートフォリオ資料">Portfolio Deliverables</h3>
+  <iframe id="portfolioFrame" src="portfolio.pdf" style="display:none;width:100%;height:500px;border:1px solid #ccc;margin-bottom:1rem;"></iframe>
+  <button id="togglePortfolioBtn" data-en="📂 Show Portfolio Preview" data-jp="📂 ポートフォリオプレビューを表示">📂 Show Portfolio Preview</button>
+  <a id="portfolioDownload" class="download-btn" href="portfolio.pdf" download>📂 Download Portfolio PDF</a>
+  <p id="portfolioCounter"></p>
+  <p id="portfolioUpdated"></p>
+</section>
       </button>
       <a class="download-btn" href="portfolio.pdf" download>📂 Download Portfolio PDF</a>
 
@@ -321,116 +344,104 @@
   <button id="backToTop" title="Go to top">⬆️</button>
 
   <script>
-    let currentLang = 'en';
+  let currentLang = 'en';
 
-    function toggleLanguage() {
-      currentLang = currentLang === 'en' ? 'jp' : 'en';
-      document.querySelectorAll('[data-en]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${currentLang}`);
-      });
-      document.querySelector('.control-buttons button:first-child').textContent =
-        currentLang === 'en' ? '日本語' : 'English';
-    }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-      const btn = document.getElementById("darkModeBtn");
-      btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
-    }
-   // Typing Animation
-    const typingText = document.getElementById("typingText");
-    const roles = ["IT & CAD Design Specialist", "Programmer", "Multilingual"];
-    let roleIndex = 0, charIndex = 0;
-    function typeEffect() {
-      if (charIndex < roles[roleIndex].length) {
-        typingText.textContent += roles[roleIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(typeEffect, 100);
-      } else {
-        setTimeout(() => {
-          typingText.textContent = "";
-          charIndex = 0;
-          roleIndex = (roleIndex + 1) % roles.length;
-          typeEffect();
-        }, 2000);
-      }
-    }
-    typeEffect();
-  function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
-  const btn = document.getElementById(btnId);
-  const frame = document.getElementById(frameId);
-
-  btn.addEventListener("click", function () {
-    const showing = frame.style.display === "block";
-
-    if (showing) {
-      frame.style.display = "none";
-      this.textContent = (currentLang === 'en' ? enShow : jpShow);
-    } else {
-      frame.style.display = "block";
-      this.textContent = (currentLang === 'en' ? enHide : jpHide);
-    }
-  });
-}
-// ===== Download Counter =====
-function setupDownloadCounter(btnId, counterId, key) {
-  let count = localStorage.getItem(key) || 0;
-  document.getElementById(counterId).textContent = `Downloaded ${count} times`;
-  document.getElementById(btnId).addEventListener("click", () => {
-    count++;
-    localStorage.setItem(key, count);
-    document.getElementById(counterId).textContent = `Downloaded ${count} times`;
-  });
-}
-setupDownloadCounter("resumeDownload", "resumeCounter", "resumeDownloads");
-setupDownloadCounter("portfolioDownload", "portfolioCounter", "portfolioDownloads");
-
-
-// ===== Last Updated Badge =====
-async function showLastUpdated(file, elementId) {
-  try {
-    let res = await fetch(file, { method: "HEAD" });
-    let date = res.headers.get("last-modified");
-    if (date) {
-      let d = new Date(date);
-      document.getElementById(elementId).textContent = `Updated: ${d.toDateString()}`;
-    }
-  } catch {}
-}
-showLastUpdated("resume.pdf", "resumeUpdated");
-showLastUpdated("portfolio.pdf", "portfolioUpdated");
-
-// Resume toggle
-setupToggle(
-  "toggleResumeBtn", "resumeFrame",
-  "📄 Show Resume Preview", "📄 Hide Resume Preview",
-  "📄 履歴書プレビューを表示", "📄 履歴書プレビューを隠す"
-);
-
-// Portfolio toggle
-setupToggle(
-  "togglePortfolioBtn", "portfolioFrame",
-  "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview",
-  "📂 ポートフォリオプレビューを表示", "📂 ポートフォリオプレビューを隠す"
-);
-    // Back to Top Button
-    const backToTopBtn = document.getElementById("backToTop");
-    window.onscroll = function () {
-      backToTopBtn.style.display =
-        (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
-    };
-    backToTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'jp' : 'en';
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = el.getAttribute(`data-${currentLang}`);
     });
+    document.querySelector('.control-buttons button:first-child').textContent =
+      currentLang === 'en' ? '日本語' : 'English';
+  }
 
-    // Gallery Modal
-    function openModal(src) {
-      document.getElementById("modal").style.display = "flex";
-      document.getElementById("modalImg").src = src;
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
+    const btn = document.getElementById("darkModeBtn");
+    btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+  }
+
+  // Typing Animation
+  const typingText = document.getElementById("typingText");
+  const roles = ["IT & CAD Design Specialist", "Programmer", "Multilingual"];
+  let roleIndex = 0, charIndex = 0;
+  function typeEffect() {
+    if (charIndex < roles[roleIndex].length) {
+      typingText.textContent += roles[roleIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeEffect, 100);
+    } else {
+      setTimeout(() => {
+        typingText.textContent = "";
+        charIndex = 0;
+        roleIndex = (roleIndex + 1) % roles.length;
+        typeEffect();
+      }, 2000);
     }
-    function closeModal() {
-      document.getElementById("modal").style.display = "none";
-    }
-  </script>
+  }
+  typeEffect();
+
+  // Preview Toggle
+  function setupToggle(btnId, frameId, enShow, enHide, jpShow, jpHide) {
+    const btn = document.getElementById(btnId);
+    const frame = document.getElementById(frameId);
+    btn.addEventListener("click", function () {
+      const showing = frame.style.display === "block";
+      frame.style.display = showing ? "none" : "block";
+      this.textContent = (currentLang === 'en'
+        ? (showing ? enShow : enHide)
+        : (showing ? jpShow : jpHide));
+    });
+  }
+  setupToggle("toggleResumeBtn", "resumeFrame", "📄 Show Resume Preview", "📄 Hide Resume Preview", "📄 履歴書プレビューを表示", "📄 履歴書プレビューを隠す");
+  setupToggle("togglePortfolioBtn", "portfolioFrame", "📂 Show Portfolio Preview", "📂 Hide Portfolio Preview", "📂 ポートフォリオプレビューを表示", "📂 ポートフォリオプレビューを隠す");
+
+  // Download Counter (optional)
+  function setupDownloadCounter(btnId, counterId, key) {
+    let count = localStorage.getItem(key) || 0;
+    document.getElementById(counterId).textContent = `Downloaded ${count} times`;
+    document.getElementById(btnId).addEventListener("click", () => {
+      count++;
+      localStorage.setItem(key, count);
+      document.getElementById(counterId).textContent = `Downloaded ${count} times`;
+    });
+  }
+  setupDownloadCounter("resumeDownload", "resumeCounter", "resumeDownloads");
+  setupDownloadCounter("portfolioDownload", "portfolioCounter", "portfolioDownloads");
+
+  // Last Updated (optional)
+  async function showLastUpdated(file, elementId) {
+    try {
+      let res = await fetch(file, { method: "HEAD" });
+      let date = res.headers.get("last-modified");
+      if (date) {
+        let d = new Date(date);
+        document.getElementById(elementId).textContent = `Updated: ${d.toDateString()}`;
+      }
+    } catch {}
+  }
+  showLastUpdated("resume.pdf", "resumeUpdated");
+  showLastUpdated("portfolio.pdf", "portfolioUpdated");
+
+  // Back to Top Button
+  const backToTopBtn = document.getElementById("backToTop");
+  window.onscroll = function () {
+    backToTopBtn.style.display =
+      (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
+  };
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Gallery Modal
+  function openModal(src) {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("modalImg").src = src;
+  }
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+</script>
+
 </body>
 </html>
