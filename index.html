@@ -217,6 +217,19 @@ body.dark #backToTop {
   background: #64b5f6;
   color: black;
 }
+/* ✅ Mobile layout for control buttons */
+@media (max-width: 480px) {
+  .control-buttons {
+    position: static; /* no longer fixed */
+    margin-top: 1rem;
+    justify-content: center;
+  }
+  .control-buttons button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
 
   </style>
 </head>
