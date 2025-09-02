@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MD Riad Ahamed Tonmoy - Portfolio</title>
   <style>
+    /* === CSS same as yours (cleaned, no duplicates) === */
     :root {
       --bg-color: #f9f9f9;
       --text-color: #333;
@@ -57,21 +56,11 @@
         margin-bottom: 0;
       }
     }
-    .header-text {
-      max-width: 500px;
-    }
-    .header-text h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    .header-text p {
-      margin: 0.5rem 0;
-    }
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem 1rem;
-    }
+    .header-text { max-width: 500px; }
+    .header-text h1 { margin: 0; font-size: 2rem; }
+    .header-text p { margin: 0.5rem 0; }
+
+    main { max-width: 900px; margin: auto; padding: 2rem 1rem; }
     section {
       margin-bottom: 2rem;
       background: var(--card-bg);
@@ -79,13 +68,9 @@
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    h2 {
-      color: var(--accent);
-      margin-top: 0;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
+    h2 { color: var(--accent); margin-top: 0; }
+    ul { padding-left: 1.2rem; }
+
     .skills span {
       display: inline-block;
       background: #e3f2fd;
@@ -95,10 +80,8 @@
       border-radius: 4px;
       font-size: 0.9rem;
     }
-    body.dark .skills span {
-      background: #263238;
-      color: #bbdefb;
-    }
+    body.dark .skills span { background: #263238; color: #bbdefb; }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -106,7 +89,7 @@
       color: white;
       font-size: 0.85rem;
     }
-    /* ✅ Control buttons (always top-right) */
+
     .control-buttons {
       position: fixed;
       top: 10px;
@@ -124,19 +107,12 @@
       border-radius: 4px;
       font-size: 0.9rem;
     }
-    .control-buttons button:hover {
-      background: #1565c0;
-    }
-    body.dark .control-buttons button:hover {
-      background: #90caf9;
-      color: black;
-    }
+    .control-buttons button:hover { background: #1565c0; }
+    body.dark .control-buttons button:hover { background: #90caf9; color: black; }
+
     iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 6px;
-      margin-top: 1rem;
+      width: 100%; height: 600px;
+      border: none; border-radius: 6px; margin-top: 1rem;
     }
     .download-btn {
       display: inline-block;
@@ -147,76 +123,36 @@
       text-decoration: none;
       border-radius: 4px;
     }
-    .download-btn:hover {
-      background: #1565c0;
-    }
-    /* ✅ Mobile First CSS upgrade */
+    .download-btn:hover { background: #1565c0; }
+
     @media (max-width: 480px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem 1rem;
-      }
-      .profile-pic {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 1rem;
-      }
-      .header-text h1 {
-        font-size: 1.4rem;
-      }
-      .header-text p {
-        font-size: 0.9rem;
-      }
-      section {
-        padding: 1rem;
-      }
-      h2 {
-        font-size: 1.2rem;
-      }
-      ul {
-        padding-left: 1rem;
-      }
-      iframe {
-        height: 400px;
-      }
+      header { flex-direction: column; text-align: center; padding: 1.5rem 1rem; }
+      .profile-pic { width: 100px; height: 100px; margin-bottom: 1rem; }
+      .header-text h1 { font-size: 1.4rem; }
+      .header-text p { font-size: 0.9rem; }
+      section { padding: 1rem; }
+      h2 { font-size: 1.2rem; }
+      iframe { height: 400px; }
     }
-    /* ✅ Thumb-friendly buttons */
+
     button, .download-btn {
-      min-width: 140px;
-      min-height: 44px;
-      font-size: 1rem;
-      padding: 0.6rem 1rem;
+      min-width: 140px; min-height: 44px;
+      font-size: 1rem; padding: 0.6rem 1rem;
       border-radius: 6px;
     }
-    /* ✅ Better readability */
-    p, li {
-      line-height: 1.8;
-    }
-    /* ✅ Back to Top Button */
+    p, li { line-height: 1.8; }
+
     #backToTop {
       display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 200;
-      font-size: 1.2rem;
-      padding: 0.6rem 0.9rem;
-      border: none;
-      border-radius: 50%;
-      background: var(--accent);
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      position: fixed; bottom: 20px; right: 20px;
+      z-index: 200; font-size: 1.2rem;
+      padding: 0.6rem 0.9rem; border: none; border-radius: 50%;
+      background: var(--accent); color: white;
+      cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       transition: background 0.3s ease;
     }
-    #backToTop:hover {
-      background: #1565c0;
-    }
-    body.dark #backToTop {
-      background: #64b5f6;
-      color: black;
-    }
+    #backToTop:hover { background: #1565c0; }
+    body.dark #backToTop { background: #64b5f6; color: black; }
   </style>
 </head>
 <body>
