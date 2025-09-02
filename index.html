@@ -169,15 +169,15 @@
 
   <main>
     <section>
+<section>
   <h2 data-en="About Me" data-jp="自己紹介">About Me</h2>
   <p 
     data-en="I am currently studying at a CAD design technical school (CADIT) while mastering both IT and design skills. I am a fresher student, well-versed in numerous programming languages including HTML, JavaScript, CSS, MySQL, Java, Python, and web technologies. My expertise also includes AutoCAD and 2D/3D modeling. I am a programmer with a strong passion for learning new technologies and a dedication to delivering high-quality code. I aim to integrate IT with manufacturing design to contribute to digital transformation (DX) in the industry."  
-    data-jp="現在、CAD製図専門学校（CADIT）で学びながら、IT技術と設計スキルの両方を習得しています。新卒の学生であり、HTML、JavaScript、CSS、MySQL、Java、Python、およびWeb技術などの多くのプログラミング言語に精通しています。AutoCADや2D/3Dモデリングの専門知識もあります。新しい技術の習得に強い情熱を持ち、高品質なコードの提供に専念しているプログラマーです。ITと製造設計を統合し、業界のデジタルトランスフォーメーション（DX）に貢献することを目指しています。
-
-"> 
-    I am currently studying at a CAD design technical school (CADIT) while mastering both IT and design skills. I am a fresher student, well-versed in numerous programming languages including HTML5, PHP OOP, JavaScript, CSS, and MySQL. My expertise also includes AutoCAD, 2D/3D modeling, and programming with Java, Python, and web technologies. I am a programmer with a strong passion for learning new technologies and a dedication to delivering high-quality code. I aim to integrate IT with manufacturing design to contribute to digital transformation (DX) in the industry.
+    data-jp="現在、CAD製図専門学校（CADIT）で学びながら、IT技術と設計スキルの両方を習得しています。新卒の学生であり、HTML、JavaScript、CSS、MySQL、Java、Python、およびWeb技術などの多くのプログラミング言語に精通しています。AutoCADや2D/3Dモデリングの専門知識もあります。新しい技術の習得に強い情熱を持ち、高品質なコードの提供に専念しているプログラマーです。ITと製造設計を統合し、業界のデジタルトランスフォーメーション（DX）に貢献することを目指しています。">
+    I am currently studying at a CAD design technical school (CADIT) while mastering both IT and design skills. I am a fresher student, well-versed in numerous programming languages including HTML, PHP OOP, JavaScript, CSS, and MySQL. My expertise also includes AutoCAD, 2D/3D modeling, and programming with Java, Python, and web technologies. I am a programmer with a strong passion for learning new technologies and a dedication to delivering high-quality code. I aim to integrate IT with manufacturing design to contribute to digital transformation (DX) in the industry.
   </p>
 </section>
+
 
     <section>
       <h2 data-en="Education" data-jp="学歴">Education</h2>
@@ -228,14 +228,15 @@
       </ul>
     </section>
 
-    <section>
-      <h2 data-en="Certifications" data-jp="資格">Certifications</h2>
-      <ul>
-        <li data-en="JLPT N3 (Dec 2023)" data-jp="日本語能力試験 N3（2023年12月）">JLPT N3 (Dec 2023)</li>
-        <li data-en="JLPT N5 (Jul 2022)" data-jp="日本語能力試験 N5（2022年7月）">JLPT N5 (Jul 2022)</li>
-        <li data-en="TOEIC 645 (May 2025)" data-jp="TOEIC 645（2025年5月）">TOEIC 645 (May 2025)</li>
-         
-    </section>
+ <section>
+  <h2 data-en="Certifications" data-jp="資格">Certifications</h2>
+  <ul>
+    <li data-en="JLPT N3 (Dec 2023)" data-jp="日本語能力試験 N3（2023年12月）">JLPT N3 (Dec 2023)</li>
+    <li data-en="JLPT N5 (Jul 2022)" data-jp="日本語能力試験 N5（2022年7月）">JLPT N5 (Jul 2022)</li>
+    <li data-en="TOEIC 645 (May 2025)" data-jp="TOEIC 645（2025年5月）">TOEIC 645 (May 2025)</li>
+  </ul> <!-- ✅ this was missing -->
+</section>
+
 
     <section>
       <h2 data-en="Hobbies & Interests" data-jp="趣味・関心">Hobbies & Interests</h2>
@@ -351,6 +352,15 @@
   document.querySelectorAll('[data-en]').forEach(el => {
     el.textContent = el.getAttribute('data-en');
   });
+// Toggle resume preview
+document.getElementById("toggleResumeBtn").addEventListener("click", function() {
+  const frame = document.getElementById("resumeFrame");
+  const showing = frame.style.display === "block";
+  frame.style.display = showing ? "none" : "block";
+  this.textContent = showing
+    ? (currentLang === 'en' ? "📄 Show Resume Preview" : "📄 履歴書プレビューを表示")
+    : (currentLang === 'en' ? "📄 Hide Resume Preview" : "📄 履歴書プレビューを隠す");
+});
 
 // Toggle portfolio preview
 document.getElementById("togglePortfolioBtn").addEventListener("click", function() {
