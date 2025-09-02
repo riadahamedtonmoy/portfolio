@@ -263,7 +263,8 @@
         📄 Show Resume Preview
       </button>
       <a class="download-btn" href="resume.pdf" download>📄 Download Resume PDF</a>
-
+<p id="resumeCounter">📄 Downloaded 0 times</p>
+<p id="resumeUpdated"></p>
       <hr style="margin:2rem 0;">
 
       <!-- Portfolio -->
@@ -276,6 +277,8 @@
         📂 Show Portfolio Preview
       </button>
       <a class="download-btn" href="portfolio.pdf" download>📂 Download Portfolio PDF</a>
+  <p id="portfolioCounter">📂 Downloaded 0 times</p>
+<p id="portfolioUpdated"></p>
     </section>
   </main>
 
@@ -320,6 +323,32 @@
     }
   });
 }
+// ===== Download Counter =====
+function setupDownloadCounter(btnId, counterId, key) {
+  let count = localStorage.getItem(key) || 0;
+  document.getElementById(counterId).textContent = `Downloaded ${count} times`;
+  document.getElementById(btnId).addEventListener("click", () => {
+    count++;
+    localStorage.setItem(key, count);
+    document.getElementById(counterId).textContent = `Downloaded ${count} times`;
+  });
+}
+setupDownloadCounter("resumeDownload", "resumeCounter", "resumeDownloads");
+setupDownloadCounter("portfolioDownload", "portfolioCounter", "portfolioDownloads");
+
+// ===== Last Updated Badge =====
+async function showLastUpdated(file, elementId) {
+  try {
+    let res = await fetch(file, { method: "HEAD" });
+    let date = res.headers.get("last-modified");
+    if (date) {
+      let d = new Date(date);
+      document.getElementById(elementId).textContent = `Updated: ${d.toDateString()}`;
+    }
+  } catch {}
+}
+showLastUpdated("resume.pdf", "resumeUpdated");
+showLastUpdated("portfolio.pdf", "portfolioUpdated");
 
 // Resume toggle
 setupToggle(
